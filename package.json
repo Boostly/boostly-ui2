@@ -1,0 +1,39 @@
+{
+  "name": "boostly-ui2",
+  "version": "1.0.0",
+  "description": "React UI components for boostly",
+  "main": "index.js",
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "keywords": [
+    "react",
+    "ui"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-plugin-emotion": "^9.2.6",
+    "emotion": "^9.2.6",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-emotion": "^9.2.6",
+    "styled-system": "^3.0.2",
+    "system-components": "^3.0.0",
+    "webfontloader": "^1.6.28"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.56",
+    "@babel/preset-env": "^7.0.0-beta.56",
+    "@babel/preset-react": "^7.0.0-beta.56",
+    "@storybook/addon-actions": "^3.4.10",
+    "@storybook/addon-links": "^3.4.10",
+    "@storybook/addons": "^3.4.10",
+    "@storybook/react": "^3.4.10",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-runtime": "^7.0.0-beta.3"
+  }
+}
