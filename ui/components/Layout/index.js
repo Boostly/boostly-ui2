@@ -1,12 +1,13 @@
 import sys from 'system-components/emotion'
 
-const getWidth = n => !num(n) || n > 1 ? px(n) : n * 100 + '%'
+const getWidth = n => (!num(n) || n > 1 ? px(n) : n * 100 + '%')
 const num = n => typeof n === 'number' && !isNaN(n)
-const px = n => num(n) ? n + 'px' : n
+const px = n => (num(n) ? n + 'px' : n)
 
 const apis = [
   props => ({ height: px(props.h) }),
   props => ({ width: getWidth(props.w) }),
+  props => ({ cursor: props.cursor }),
   // core
   'space',
   'width',
@@ -50,17 +51,14 @@ const apis = [
   'left'
 ]
 
-const justifyLogic = key =>
-  p => p[key] && { justifyContent: p[key] === 'end' ? 'flex-end' : 'center' }
+const justifyLogic = key => p =>
+  p[key] && { justifyContent: p[key] === 'end' ? 'flex-end' : 'center' }
 
-const alignLogic = key =>
-  p =>
-    p[key] &&
-      {
-        alignItems: p[key] === 'end'
-          ? 'flex-end'
-          : p.x === 'stretch' ? 'stretch' : 'center'
-      }
+const alignLogic = key => p =>
+  p[key] && {
+    alignItems:
+      p[key] === 'end' ? 'flex-end' : p.x === 'stretch' ? 'stretch' : 'center'
+  }
 
 const row = {
   x: justifyLogic('x'),
@@ -79,10 +77,10 @@ const col = {
 const wrap = p =>
   p.wrap && { flexWrap: p.wrap === 'reverse' ? 'wrap-reverse' : 'wrap' }
 
-const blacklist = [ 'w', 'h', 'x', 'y', 'reverse', 'wrap', 'space' ]
+const blacklist = ['w', 'h', 'x', 'y', 'reverse', 'wrap', 'space']
 let Layout = sys(...apis)
 
-Layout.row = sys(
+export const Row = sys(
   { is: sys({ blacklist }) },
   { display: 'flex' },
   ...apis,
@@ -92,10 +90,10 @@ Layout.row = sys(
   row.reverse,
   wrap
 )
-
+Layout.row = Row
 Layout.row.displayName = 'Row'
 
-Layout.col = sys(
+export const Col = sys(
   { is: sys({ blacklist }), mx: -3 },
   { display: 'flex', flexDirection: 'column' },
   ...apis,
@@ -105,7 +103,7 @@ Layout.col = sys(
   col.reverse,
   wrap
 )
-
+Layout.col = Col
 Layout.col.displayName = 'Column'
 
 export default Layout
