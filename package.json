@@ -2,7 +2,7 @@
   "name": "boostly-ui2",
   "version": "1.0.2",
   "description": "React UI components for boostly",
-  "main": "index.js",
+  "main": "dist",
   "scripts": {
     "build": "babel --copy-files --out-dir dist ui",
     "prepublish": "npm run build",
