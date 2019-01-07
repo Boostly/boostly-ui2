@@ -17,7 +17,7 @@ const Popup = ({ isOpen, children, height = '100%' }) =>
   isOpen ? (
     <Box
       bg="transparent"
-      position="absolute"
+      position="fixed"
       top="0"
       left="0"
       w="100%"

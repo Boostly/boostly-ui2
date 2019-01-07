@@ -21,14 +21,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@rebass/components": "^4.0.0-1",
     "babel-plugin-emotion": "^9.2.6",
     "emotion": "^9.2.6",
     "prop-types": "^15.6.2",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "16.7.0-alpha.2",
+    "react-dom": "16.7.0-alpha.2",
     "react-emotion": "^9.2.6",
-    "styled-system": "^3.0.2",
-    "system-components": "^3.0.0",
+    "styled-system": "^3.1.11",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {

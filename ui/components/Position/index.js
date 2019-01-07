@@ -1,4 +1,4 @@
-import sys from 'system-components/emotion'
+import sys from '@rebass/components/emotion'
 
 export const Position = sys(
   'space',
@@ -14,7 +14,7 @@ Position.displayName = 'Position'
 
 export const Relative = sys(
   {
-    is: Position
+    extend: Position
   },
   {
     position: 'relative'
@@ -24,7 +24,7 @@ Relative.displayName = 'Relative'
 
 export const Absolute = sys(
   {
-    is: Position
+    extend: Position
   },
   {
     position: 'absolute'
@@ -34,7 +34,7 @@ Absolute.displayName = 'Absolute'
 
 export const Fixed = sys(
   {
-    is: Position
+    extend: Position
   },
   {
     position: 'fixed'
@@ -44,7 +44,7 @@ Fixed.displayName = 'Fixed'
 
 export const Sticky = sys(
   {
-    is: Position
+    extend: Position
   },
   {
     position: 'sticky'

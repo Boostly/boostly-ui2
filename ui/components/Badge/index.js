@@ -1,4 +1,4 @@
-import sys from 'system-components/emotion'
+import sys from '../../utils/system'
 import { fonts, colors } from '../../settings'
 
 export const Badge = sys(
@@ -17,7 +17,13 @@ export const Badge = sys(
     WebkitFontSmoothing: 'antialiased',
     display: 'inline-block',
     verticalAlign: 'middle'
-  }
+  },
+  'space',
+  'color',
+  'borderRadius',
+  'fontSize',
+  'fontFamily',
+  'fontWeight'
 )
 
 Badge.displayName = 'Badge'

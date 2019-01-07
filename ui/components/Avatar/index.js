@@ -1,13 +1,13 @@
 import React from 'react'
 import { keyframes } from 'react-emotion'
-import sys from 'system-components/emotion'
+import sys from '@rebass/components/emotion'
 import { colors } from '../../settings'
 import Box from '../Layout'
 import Circle from '../Circle'
 import Astronaut from './Astronaut'
 
 export const Avatar = sys(
-  { is: 'img', size: 48, borderRadius: '99999px' },
+  { extend: 'img', size: 48, borderRadius: '99999px' },
   { display: 'inline-block' },
   'space',
   'color',

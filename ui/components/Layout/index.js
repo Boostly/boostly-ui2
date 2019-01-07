@@ -1,4 +1,4 @@
-import sys from 'system-components/emotion'
+import sys from '@rebass/components/emotion'
 
 const getWidth = n => (!num(n) || n > 1 ? px(n) : n * 100 + '%')
 const num = n => typeof n === 'number' && !isNaN(n)
@@ -81,7 +81,7 @@ const blacklist = ['w', 'h', 'x', 'y', 'reverse', 'wrap', 'space']
 let Layout = sys(...apis)
 
 export const Row = sys(
-  { is: sys({ blacklist }) },
+  { extend: sys({ blacklist }) },
   { display: 'flex' },
   ...apis,
   row.x,
@@ -94,7 +94,7 @@ Layout.row = Row
 Layout.row.displayName = 'Row'
 
 export const Col = sys(
-  { is: sys({ blacklist }), mx: -3 },
+  { extend: sys({ blacklist }) },
   { display: 'flex', flexDirection: 'column' },
   ...apis,
   col.x,

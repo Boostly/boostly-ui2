@@ -1,11 +1,11 @@
-import sys from 'system-components/emotion'
+import sys from '@rebass/components/emotion'
 
-const getWidth = n => !num(n) || n > 1 ? px(n) : n * 100 + '%'
+const getWidth = n => (!num(n) || n > 1 ? px(n) : n * 100 + '%')
 const num = n => typeof n === 'number' && !isNaN(n)
-const px = n => num(n) ? n + 'px' : n
+const px = n => (num(n) ? n + 'px' : n)
 const Base = sys(
   {
-    is: sys({ blacklist: [ 'w', 'h', 'x', 'y', 'wrap', 'reverse', 'space' ] })
+    extend: sys({ blacklist: ['w', 'h', 'x', 'y', 'wrap', 'reverse', 'space'] })
   },
   props => ({ height: px(props.h) }),
   props => ({ width: getWidth(props.w) }),

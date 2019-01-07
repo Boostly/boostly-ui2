@@ -1,5 +1,5 @@
 import React from 'react'
-import sys from 'system-components/emotion'
+import sys from '@rebass/components/emotion'
 import { colors, fonts } from '../../settings'
 import { opacity, pxToEm } from '../../utils'
 
@@ -65,14 +65,14 @@ const variants = {
 export const applyVariants = props => ({ ...variants[props.variant] })
 
 let _Button = sys(
-  { is: sys({ is: 'button', blacklist: [ 'variant' ] }) },
+  { extend: sys({ is: 'button', blacklist: ['variant'] }) },
   { ...base, ...main },
   applyVariants
 )
 
-let Button = props => <_Button {...props} variant='primary' />
-Button.two = props => <_Button {...props} variant='primary2' />
-Button.second = props => <_Button {...props} variant='second' />
-Button.warn = props => <_Button {...props} variant='warn' />
+let Button = props => <_Button {...props} variant="primary" />
+Button.two = props => <_Button {...props} variant="primary2" />
+Button.second = props => <_Button {...props} variant="second" />
+Button.warn = props => <_Button {...props} variant="warn" />
 
 export default Button
