@@ -47,12 +47,10 @@ const getPropTypes = funcs =>
       }),
       {}
     )
-console.log(styles)
 const system = (props = {}, ...keysOrStyles) => {
   const funcs = keysOrStyles.map(key => styles[key] || key)
   const propTypes = getPropTypes(funcs)
   const Component = styled(tag)([], ...funcs, css)
-  console.log(funcs)
   const baseProps = util.get(props, 'extend.defaultProps') || {}
   Component.defaultProps = {
     ...baseProps,

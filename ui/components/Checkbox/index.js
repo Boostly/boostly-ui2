@@ -23,12 +23,13 @@ const CheckIcon = ({ size = 14, color = 'white' }) => (
   </svg>
 )
 
+const noop = () => ({})
 /**
  * 1. Checkbox supports being a controlled component by not passing
  * in an "onChange" value
  */
 const Checkbox = ({ onChange, checked }) => (
-  <ToggleState onToggle={onChange} checked={checked}>
+  <ToggleState onToggle={onChange || noop} checked={checked}>
     {isChecked => {
       const showCheck = onChange ? isChecked : checked /* [1] */
       return (
