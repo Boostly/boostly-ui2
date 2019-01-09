@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Badge from '../Badge'
 import Box from '../Layout'
 
@@ -19,31 +19,20 @@ const Icon = () => (
   </svg>
 )
 
-export class ToggleState extends Component {
-  state = {
-    isOn: !!this.props.checked
+export const ToggleState = ({ children, checked, onToggle }) => {
+  const [isOn, update] = useState(checked)
+
+  const toggle = () => {
+    const _isOn = !isOn
+    update(_isOn)
+    onToggle(_isOn)
   }
 
-  toggle = () => {
-    this.setState(prev => {
-      const { onToggle } = this.props
-      const isOn = !prev.isOn
-
-      if (onToggle) {
-        onToggle(isOn)
-      }
-
-      return { isOn }
-    })
-  }
-
-  render() {
-    return (
-      <div onClick={this.toggle} style={{ display: 'inline-block' }}>
-        {this.props.children(this.state.isOn)}
-      </div>
-    )
-  }
+  return (
+    <div onClick={toggle} style={{ display: 'inline-block' }}>
+      {children(isOn)}
+    </div>
+  )
 }
 
 const Toggle = ({ onToggle, onText = 'On', offText = 'Off' }) => (

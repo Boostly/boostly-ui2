@@ -8,22 +8,24 @@ const Container = ({ children }) => (
   </div>
 )
 
-class Test extends Component {
-  state = {
-    checked: true
-  }
-  onChange = value => {
-    this.setState({
-      checked: value
-    })
-  }
-  render = () => {
-    return <Checkbox checked={this.state.checked} onChange={this.onChange} />
-  }
+const Uncontrolled = props => {
+  const [checked, toggle] = React.useState(false)
+  return <Checkbox checked={checked} onChange={toggle} />
+}
+
+const Controlled = props => {
+  const [checked, toggle] = React.useState(false)
+  return (
+    <div onClick={() => toggle(!checked)}>
+      <Checkbox checked={checked} />
+      <div>Label</div>
+    </div>
+  )
 }
 
 storiesOf('Checkbox', module).add('basic', () => (
   <Container>
-    <Test />
+    <Uncontrolled />
+    <Controlled />
   </Container>
 ))

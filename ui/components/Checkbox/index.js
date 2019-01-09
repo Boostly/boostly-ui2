@@ -1,5 +1,5 @@
 import React from 'react'
-import { css } from 'emotion'
+import pt from 'prop-types'
 import { ToggleState } from '../Toggle'
 import { colors } from '../../settings'
 import Box from '../Layout'
@@ -23,23 +23,35 @@ const CheckIcon = ({ size = 14, color = 'white' }) => (
   </svg>
 )
 
-const Checkbox = ({ onChange = () => ({}), checked }) => (
+/**
+ * 1. Checkbox supports being a controlled component by not passing
+ * in an "onChange" value
+ */
+const Checkbox = ({ onChange, checked }) => (
   <ToggleState onToggle={onChange} checked={checked}>
-    {isChecked => (
-      <Box.row
-        x
-        y
-        css="cursor: pointer; transition: .25s"
-        h="20px"
-        w="20px"
-        borderRadius={6}
-        bg={isChecked ? colors.purple : 'white'}
-        border={`solid 5px ${isChecked ? 'transparent' : colors.purple}`}
-      >
-        <CheckIcon />
-      </Box.row>
-    )}
+    {isChecked => {
+      const showCheck = onChange ? isChecked : checked /* [1] */
+      return (
+        <Box.row
+          x
+          y
+          css="cursor: pointer; transition: .25s"
+          h="20px"
+          w="20px"
+          borderRadius={6}
+          bg={showCheck ? colors.purple : 'white'}
+          border={`solid 5px ${showCheck ? 'transparent' : colors.purple}`}
+        >
+          <CheckIcon />
+        </Box.row>
+      )
+    }}
   </ToggleState>
 )
+
+Checkbox.propTypes = {
+  onChange: pt.func,
+  checked: pt.bool
+}
 
 export default Checkbox
