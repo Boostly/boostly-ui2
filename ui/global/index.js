@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { injectGlobal } from 'emotion'
 import { baseFontSize } from '../settings'
 
@@ -17,4 +17,5 @@ export const LoadFont = () => {
       google: { families: ['Work+Sans:400,700', 'Righteous', 'sans-serif'] }
     })
   })
+  return <div />
 }
