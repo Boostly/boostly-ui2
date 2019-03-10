@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel --copy-files --out-dir dist ui",
     "prepublish": "npm run build",
-    "postpublish": "rm -rf dist && rm -r node_modules",
+    "postpublish": "rm -rf dist",
     "prebuild": "rm -rf dist && mkdir dist",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
