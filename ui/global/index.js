@@ -1,10 +1,12 @@
-import { injectGlobal } from 'emotion'
-import WebFont from 'webfontloader'
-import { baseFontSize } from '../settings'
+import { injectGlobal } from "emotion";
+import WebFont from "webfontloader";
+import { baseFontSize } from "../settings";
 
-WebFont.load({
-  google: { families: ['Work+Sans:400,700', 'Righteous', 'sans-serif'] }
-})
+if (window) {
+  WebFont.load({
+    google: { families: ["Work+Sans:400,700", "Righteous", "sans-serif"] }
+  });
+}
 
 injectGlobal`
   * {
@@ -12,4 +14,4 @@ injectGlobal`
   }
   html { font-size: ${baseFontSize}px }
   body { margin: 0; }
-`
+`;
