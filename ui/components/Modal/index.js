@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import pt from 'prop-types'
 import Overlay from '../Overlay'
 import Close from '../Close'
 import Box from '../Layout'
@@ -37,15 +38,17 @@ const makeRenderProps = ({ onRequestClose }) => ({
   )
 })
 
-class Modal extends Component {
-  render () {
-    const { isOpen, popup = true, children } = this.props
-    return isOpen ? (
-      <Overlay popup={popup} isOpen>
-        {children(makeRenderProps(this.props))}
-      </Overlay>
-    ) : null
-  }
+const Modal = ({ popup = true, ...props }) =>
+  props.isOpen ? (
+    <Overlay popup={popup} isOpen>
+      {props.children(makeRenderProps(props))}
+    </Overlay>
+  ) : null
+
+Modal.propTypes = {
+  popup: pt.bool,
+  isOpen: pt.bool,
+  children: pt.func.isRequired
 }
 
 export default Modal

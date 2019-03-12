@@ -1,5 +1,6 @@
 import React from 'react'
 import pt from 'prop-types'
+import { css } from '@emotion/core'
 import { ToggleState } from '../Toggle'
 import { colors } from '../../settings'
 import Box from '../Layout'
@@ -36,7 +37,10 @@ const Checkbox = ({ onChange, checked }) => (
         <Box.row
           x
           y
-          css="cursor: pointer; transition: .25s"
+          css={css`
+            cursor: pointer;
+            transition: 0.25s;
+          `}
           h="20px"
           w="20px"
           borderRadius={6}

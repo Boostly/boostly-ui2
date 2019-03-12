@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { css } from '@emotion/core'
+import pt from 'prop-types'
 import Badge from '../Badge'
 import Box from '../Layout'
 
@@ -35,7 +37,13 @@ export const ToggleState = ({ children, checked, onToggle }) => {
   )
 }
 
-const Toggle = ({ onToggle, onText = 'On', offText = 'Off' }) => (
+ToggleState.propTypes = {
+  children: pt.func.isRequired,
+  checked: pt.bool,
+  onToggle: pt.func.isRequired
+}
+
+const Toggle = ({ onToggle = () => ({}), onText = 'On', offText = 'Off' }) => (
   <ToggleState onToggle={onToggle}>
     {isOn => (
       <Badge>
@@ -49,7 +57,7 @@ const Toggle = ({ onToggle, onText = 'On', offText = 'Off' }) => (
           pr={isOn ? 0 : 2}
           pl={isOn ? 2 : 0}
           fontSize="1.4em"
-          css={`
+          css={css`
             user-select: none;
           `}
         >
@@ -60,5 +68,11 @@ const Toggle = ({ onToggle, onText = 'On', offText = 'Off' }) => (
     )}
   </ToggleState>
 )
+
+Toggle.propTypes = {
+  onToggle: pt.func,
+  onText: pt.string,
+  offText: pt.string
+}
 
 export default Toggle

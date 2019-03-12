@@ -21,24 +21,22 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@rebass/components": "^4.0.0-1",
-    "emotion": "^9.2.6",
-    "eslint-plugin-react": "^7.12.3",
+    "@emotion/core": "^10.0.7",
+    "@emotion/styled": "^10.0.7",
     "prop-types": "^15.6.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-emotion": "^9.2.6",
-    "styled-system": "^3.1.11",
+    "styled-system": "^4.0.0-0",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.1.2",
+    "@emotion/babel-preset-css-prop": "^10.0.9",
     "@storybook/addon-actions": "^3.4.10",
     "@storybook/addon-links": "^3.4.10",
     "@storybook/addons": "^3.4.10",
@@ -50,6 +48,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-react": "^7.12.3",
     "eslint-plugin-standard": "^3.1.0"
   }
 }

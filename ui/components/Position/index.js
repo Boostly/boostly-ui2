@@ -1,55 +1,41 @@
-import sys from '@rebass/components/emotion'
+import make from '../../utils/make'
 
-export const Position = sys(
-  'space',
-  'color',
-  'zIndex',
-  'top',
-  'right',
-  'bottom',
-  'left'
-)
+export const Position = make({
+  api: ['space', 'color', 'zIndex', 'top', 'right', 'bottom', 'left']
+})
 
 Position.displayName = 'Position'
 
-export const Relative = sys(
-  {
-    extend: Position
-  },
-  {
+export const Relative = make({
+  extend: Position,
+  defaults: {
     position: 'relative'
   }
-)
+})
 Relative.displayName = 'Relative'
 
-export const Absolute = sys(
-  {
-    extend: Position
-  },
-  {
+export const Absolute = make({
+  extend: Position,
+  defaults: {
     position: 'absolute'
   }
-)
+})
 Absolute.displayName = 'Absolute'
 
-export const Fixed = sys(
-  {
-    extend: Position
-  },
-  {
+export const Fixed = make({
+  extend: Position,
+  defaults: {
     position: 'fixed'
   }
-)
+})
 Fixed.displayName = 'Fixed'
 
-export const Sticky = sys(
-  {
-    extend: Position
-  },
-  {
+export const Sticky = make({
+  extend: Position,
+  defaults: {
     position: 'sticky'
   }
-)
+})
 Sticky.displayName = 'Sticky'
 
 export default Position

@@ -1,23 +1,22 @@
 import { configure } from '@storybook/react'
-import '../ui/global'
+// import '../ui/global'
 // automatically import all files ending in *.stories.js
 const stories = [
-  'Base',
   'Layout',
   'Text',
   'Button',
   'Circle',
   'Badge',
   'Avatar',
-  'Close',
-  'Icons',
   'Toggle',
   'Popup',
   'Overlay',
   'Modal',
-  'Checkbox'
+  'Checkbox',
+  'Close',
+  'Icons'
 ]
-function loadStories() {
+function loadStories () {
   stories.forEach(story => require('../ui/components/' + story + '/story.js'))
 }
 

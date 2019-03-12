@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { injectGlobal } from 'emotion'
+import { injectGlobal } from '@emotion/core'
 import { baseFontSize } from '../settings'
 
 injectGlobal`

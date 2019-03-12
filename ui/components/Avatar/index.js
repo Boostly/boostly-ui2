@@ -1,18 +1,24 @@
 import React from 'react'
-import { keyframes } from 'react-emotion'
-import sys from '@rebass/components/emotion'
+import pt from 'prop-types'
+import { css, keyframes } from '@emotion/core'
+import make from '../../utils/make'
 import { colors } from '../../settings'
 import Box from '../Layout'
 import Circle from '../Circle'
 import Astronaut from './Astronaut'
 
-export const Avatar = sys(
-  { extend: 'img', size: 48, borderRadius: '99999px' },
-  { display: 'inline-block' },
-  'space',
-  'color',
-  'size'
-)
+const Avatar = make({
+  baseTag: 'img',
+  api: ['space', 'color', 'size'],
+  css: `
+    display: inline-block;
+    border-radius: 9999999px;
+  `,
+  defaults: {
+    width: 48,
+    height: 48
+  }
+})
 
 Avatar.displayName = 'Avatar'
 
@@ -22,10 +28,10 @@ const float = keyframes`
   }
 `
 
-const sizeUpAstro = (Avatar.default = ({ bg = 'purple', size = 'large' }) => (
+Avatar.default = ({ bg = 'purple', size = 'large' }) => (
   <Circle
     size={size}
-    css={`
+    css={css`
       overflow: hidden;
     `}
     bg={colors[bg] || bg}
@@ -34,7 +40,7 @@ const sizeUpAstro = (Avatar.default = ({ bg = 'purple', size = 'large' }) => (
       mb={
         { small: '-8px', medium: '-15px', large: '-25px', giant: '-50px' }[size]
       }
-      css={`
+      css={css`
         animation: ${float} 3.5s ease infinite;
         animation-delay: ${Math.floor(Math.random() * 3 + 1)}s;
       `}
@@ -51,7 +57,12 @@ const sizeUpAstro = (Avatar.default = ({ bg = 'purple', size = 'large' }) => (
       />
     </Box>
   </Circle>
-))
+)
+
+Avatar.default.propTypes = {
+  bg: pt.string,
+  size: pt.oneOf(['small', 'medium', 'large', 'giant'])
+}
 
 Avatar.default.displayName = 'DefaultAvatar'
 

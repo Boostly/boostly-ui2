@@ -1,34 +1,32 @@
-import React from 'react'
-import sys from '@rebass/components/emotion'
+import make from '../../utils/make'
 import { colors, fonts } from '../../settings'
 import { opacity, pxToEm } from '../../utils'
 
-export const base = {
-  cursor: 'pointer',
-  border: 'none',
-  position: 'relative',
-  outline: 'none'
-}
-
-export const psuedo = {
+export const base = `
+  cursor: pointer;
+  border: none;
+  position: relative;
+  outline: none;
+`
+export const psuedo = `
   ':before,:after': {
-    content: '" "',
-    position: 'absolute',
-    zIndex: -2,
-    transition: 'all 250ms ease-out'
+    content: " ";
+    position: absolute;
+    z-index: -2;
+    transition: all 250ms ease-out;
   }
-}
-const main = {
-  fontFamily: fonts.h,
-  color: '#fff',
-  transition: '.25s',
-  fontSize: '1em',
-  height: pxToEm(42),
-  width: '100%',
-  borderRadius: pxToEm(25),
-  letterSpacing: 0.2,
-  ...psuedo
-}
+`
+const main = `
+  font-family: ${fonts.h};
+  color: #fff;
+  transition: 0.25s;
+  font-size: 1em;
+  height: ${pxToEm(42)};
+  width: 100%;
+  border-radius: ${pxToEm(25)};
+  letter-spacing: 0.2;
+  ${psuedo}
+`
 
 const addDepth = hex => {
   let shadow = opacity(hex, 0.3)
@@ -64,15 +62,45 @@ const variants = {
 
 export const applyVariants = props => ({ ...variants[props.variant] })
 
-let _Button = sys(
-  { extend: sys({ is: 'button', blacklist: ['variant'] }) },
-  { ...base, ...main },
-  applyVariants
-)
+let _Button = make({
+  api: [applyVariants],
+  baseTag: 'button',
+  css: `
+    ${base}
+    ${main}
+  `,
+  blacklist: ['variant']
+})
 
-let Button = props => <_Button {...props} variant="primary" />
-Button.two = props => <_Button {...props} variant="primary2" />
-Button.second = props => <_Button {...props} variant="second" />
-Button.warn = props => <_Button {...props} variant="warn" />
+let Button = make({
+  extend: _Button,
+  defaults: {
+    variant: 'primary'
+  }
+})
+
+Button.two = make({
+  extend: _Button,
+  defaults: {
+    variant: 'primary2'
+  }
+})
+Button.two.displayName = 'ButtonTwo'
+
+Button.second = make({
+  extend: _Button,
+  defaults: {
+    variant: 'second'
+  }
+})
+Button.second.displayName = 'ButtonSecond'
+
+Button.warn = make({
+  extend: _Button,
+  defaults: {
+    variant: 'warn'
+  }
+})
+Button.warn.displayName = 'ButtonWarn'
 
 export default Button

@@ -1,6 +1,4 @@
-import React from 'react'
-import styled from 'react-emotion'
-import { size } from 'styled-system'
+import make from '../../utils/make'
 import Badge from '../Badge'
 import {
   applyVariants as applyButtonVariants,
@@ -13,31 +11,67 @@ const sizing = p => {
   const size = nameToSize[p.size] || p.size || 48
   return { width: size, height: size }
 }
-const Circle = styled(Badge)`
-  text-align: center;
-  border-radius: 99999px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  ${size}
-  ${sizing}
-`
+
+const Circle = make({
+  extend: Badge,
+  api: ['size', sizing],
+  css: `
+    text-align: center;
+    border-radius: 99999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `,
+  defaults: {
+    px: 0,
+    py: 0
+  }
+})
 
 Circle.displayName = 'Circle'
 
-let _CB = styled(Circle)`
-  ${baseButtonStyle}
-  ${psuedo}
-  ${applyButtonVariants}
-`
+let _CB = make({
+  api: [applyButtonVariants],
+  extend: Circle,
+  css: `
+    ${baseButtonStyle}
+    ${psuedo}
+  `,
+  defaults: {
+    size: 'medium'
+  }
+})
 
-Circle.Button = props => <_CB {...props} variant='primary' size='medium' />
-Circle.Button.two = props => (
-  <_CB {...props} variant='primary2' size='medium' />
-)
-Circle.Button.second = props => (
-  <_CB {...props} variant='second' size='medium' />
-)
-Circle.Button.warn = props => <_CB {...props} variant='warn' size='medium' />
+Circle.Button = make({
+  extend: _CB,
+  defaults: {
+    variant: 'primary'
+  }
+})
+Circle.Button.displayName = 'CircleButton'
+
+Circle.Button.two = make({
+  extend: _CB,
+  defaults: {
+    variant: 'primary2'
+  }
+})
+Circle.Button.two.displayName = 'CircleButtonTwo'
+
+Circle.Button.second = make({
+  extend: _CB,
+  defaults: {
+    variant: 'second'
+  }
+})
+Circle.Button.second.displayName = 'CircleButtonSecond'
+
+Circle.Button.warn = make({
+  extend: _CB,
+  defaults: {
+    variant: 'warn'
+  }
+})
+Circle.Button.warn.displayName = 'CircleButtonWarn'
 
 export default Circle

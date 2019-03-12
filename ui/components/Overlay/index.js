@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import DOM from 'react-dom'
 import pt from 'prop-types'
-import styled, { css } from 'react-emotion'
+import { css } from '@emotion/core'
 import { opacity } from '../../utils'
 import { colors } from '../../settings'
 import Popup from '../Popup'
@@ -20,58 +20,63 @@ const fixed = css`
   top: 0;
   bottom: 0;
 `
-class Overlay extends Component {
-  static propTypes = {
-    popup: pt.bool,
-    isOpen: pt.bool,
-    selector: pt.string
-  }
-  glassFilterEffect = css`
-    filter: blur(5px);
-  `
-  portalTargetNode = document.createElement('div')
-  contentParentNode = null
-  componentDidMount = () => {
-    if (this.props.isOpen) {
-      this.mountPortalTarget(this.portalTargetNode)
-      this.addFilterEffect()
+const glassFilterEffect = css`
+  filter: blur(5px);
+`
+let portalTargetNode = document.createElement('div')
+let contentParentNode = null
+const mountPortalTarget = node =>
+  document.querySelector('body').appendChild(node)
+const unmountPortalTarget = node =>
+  document.querySelector('body').removeChild(node)
+const addFilterEffect = selector => {
+  contentParentNode = document.querySelector(selector || '#root')
+  console.log(glassFilterEffect, contentParentNode, selector || '#root')
+  contentParentNode.className += glassFilterEffect
+}
+const removeFilterEffect = () => {
+  contentParentNode.className = ''
+}
+function Overlay (props) {
+  React.useEffect(() => {
+    if (props.isOpen) {
+      mountPortalTarget(portalTargetNode)
+      addFilterEffect(props.selector)
     }
-  }
-  componentWillUnmount = () => {
-    if (this.props.isOpen) {
-      this.removeFilterEffect()
-      this.unmountPortalTarget(this.portalTargetNode)
+
+    console.log(portalTargetNode)
+    return function cleanup () {
+      if (props.isOpen) {
+        unmountPortalTarget(portalTargetNode)
+        removeFilterEffect()
+      }
     }
-  }
-  addFilterEffect = () => {
-    this.contentParentNode = document.querySelector(
-      this.props.selector || '#root'
+  })
+
+  if (!props.isOpen) return null
+  return props.popup ? (
+    DOM.createPortal(
+      <Popup isOpen={props.isOpen}>
+        <div
+          css={css`
+            ${common}
+          `}
+        >
+          {props.children}
+        </div>
+      </Popup>,
+      portalTargetNode
     )
-    this.contentParentNode.className += this.glassFilterEffect
-  }
-  removeFilterEffect = () => {
-    this.contentParentNode.className = ''
-  }
-  mountPortalTarget = node => {
-    document.querySelector('body').appendChild(node)
-  }
-  unmountPortalTarget = node => {
-    document.querySelector('body').removeChild(node)
-  }
-  render() {
-    const { popup, isOpen, children } = this.props
-    if (!isOpen) return null
-    return popup ? (
-      DOM.createPortal(
-        <Popup isOpen={isOpen}>
-          <div className={`${common}`}>{children}</div>
-        </Popup>,
-        this.portalTargetNode
-      )
-    ) : (
-      <div className={`${common} ${fixed}`}>{children}</div>
-    )
-  }
+  ) : (
+    <div className={`${common} ${fixed}`}>{props.children}</div>
+  )
+}
+
+Overlay.propTypes = {
+  popup: pt.bool,
+  isOpen: pt.bool,
+  selector: pt.string,
+  children: pt.node
 }
 
 export default Overlay
