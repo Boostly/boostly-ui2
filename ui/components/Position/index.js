@@ -1,7 +1,16 @@
 import make from '../../utils/make'
 
 export const Position = make({
-  api: ['space', 'color', 'zIndex', 'top', 'right', 'bottom', 'left']
+  api: [
+    'position',
+    'space',
+    'color',
+    'zIndex',
+    'top',
+    'right',
+    'bottom',
+    'left'
+  ]
 })
 
 Position.displayName = 'Position'
