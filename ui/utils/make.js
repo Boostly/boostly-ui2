@@ -8,14 +8,7 @@ const styles = Object.keys(sys)
 
 const _blacklist = ['css', 'is', 'as', ...styles]
 
-const makePropFilter = bl => prop => {
-  const blacklist = bl.reduce(
-    (map, key) => ({
-      ...map,
-      [key]: true
-    }),
-    {}
-  )
+const makePropFilter = blacklist => prop => {
   return isPropValid(prop) && !blacklist[prop]
 }
 
@@ -27,9 +20,15 @@ function make ({
   defaults = {},
   blacklist = []
 }) {
-  const shouldForwardProp = extend
-    ? () => true
-    : makePropFilter([..._blacklist, ...blacklist])
+  const blacklistMap = [..._blacklist, ...blacklist].reduce(
+    (map, key) => ({
+      ...map,
+      [key]: true
+    }),
+    {}
+  )
+
+  const shouldForwardProp = extend ? () => true : makePropFilter(blacklistMap)
 
   const _Base = styled(extend || 'div', {
     shouldForwardProp

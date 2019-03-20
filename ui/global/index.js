@@ -6,6 +6,6 @@ export const LoadFont = () => {
     WebFont.load({
       google: { families: ['Work+Sans:400,700', 'Righteous', 'sans-serif'] }
     })
-  })
+  }, [])
   return <div />
 }
