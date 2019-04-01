@@ -38,9 +38,9 @@ const makeRenderProps = ({ onRequestClose }) => ({
   )
 })
 
-const Modal = ({ popup = true, ...props }) =>
+const Modal = ({ popup = true, zIndex, ...props }) =>
   props.isOpen ? (
-    <Overlay popup={popup} isOpen>
+    <Overlay popup={popup} isOpen zIndex={zIndex}>
       {props.children(makeRenderProps(props))}
     </Overlay>
   ) : null

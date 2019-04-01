@@ -59,6 +59,7 @@ function Overlay (props) {
       <Popup isOpen={props.isOpen}>
         <div
           css={css`
+            z-index: ${props.zIndex || 100};
             ${common}
           `}
         >
