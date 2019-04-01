@@ -32,10 +32,10 @@ const unmountPortalTarget = node =>
   document.querySelector('body').removeChild(node)
 const addFilterEffect = selector => {
   contentParentNode = document.querySelector(selector || '#root')
-  contentParentNode.className += glassFilterEffect
+  contentParentNode.setAttribute('style', glassFilterEffect.styles)
 }
 const removeFilterEffect = () => {
-  contentParentNode.className = ''
+  contentParentNode.setAttribute('style', {})
 }
 function Overlay (props) {
   portalTargetNode = document.createElement('div')
