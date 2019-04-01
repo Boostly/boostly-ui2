@@ -35,7 +35,7 @@ const addFilterEffect = selector => {
   contentParentNode.setAttribute('style', glassFilterEffect.styles)
 }
 const removeFilterEffect = () => {
-  contentParentNode.setAttribute('style', {})
+  contentParentNode.setAttribute('style', '')
 }
 function Overlay (props) {
   portalTargetNode = document.createElement('div')
