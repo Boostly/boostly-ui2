@@ -66,7 +66,7 @@ function Overlay (props) {
           {props.children}
         </div>
       </Popup>,
-      portalTargetNode
+      portalNode
     )
   ) : (
     <div className={`${common} ${fixed}`}>{props.children}</div>
