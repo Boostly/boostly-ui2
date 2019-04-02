@@ -24,7 +24,6 @@ const glassFilterEffect = css`
   filter: blur(5px);
 `
 
-let portalTargetNode
 let contentParentNode = null
 const mountPortalTarget = node =>
   document.querySelector('body').appendChild(node)
@@ -38,8 +37,9 @@ const removeFilterEffect = () => {
   contentParentNode.setAttribute('style', '')
 }
 function Overlay (props) {
-  portalTargetNode = document.createElement('div')
+  const portalNode = document.createElement('div')
   React.useEffect(() => {
+    let portalTargetNode = portalNode
     if (props.isOpen) {
       mountPortalTarget(portalTargetNode)
       addFilterEffect(props.selector)
