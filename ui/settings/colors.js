@@ -1,3 +1,5 @@
+import { lightening as l } from '../utils'
+
 const brand = {
   purple: '#8147FF',
   dusk: '#5B27A2',
@@ -13,4 +15,23 @@ const base = {
   yellow: '#FFC907'
 }
 
-export default { ...base, ...brand }
+const p = {
+  iron: l('#DEE0E0', 10),
+  // base of Monochromatic scheme
+  aqua_haze: '#F7F9FA',
+  river_bed: '#435761'
+}
+
+const accent = {
+  lightBase: 'white',
+  lightBaseHighlight: p.aqua_haze,
+  lightBaseBorder: l(p.aqua_haze, -10),
+  base: p.iron,
+  baseHighlight: l(p.iron, -10),
+  baseBorder: l(p.iron, -10),
+  darkBase: p.river_bed,
+  darkBaseHighlight: l(p.river_bed, -10),
+  darkBaseBorder: l(p.river_bed, -10)
+}
+
+export default { ...base, ...brand, ...accent }

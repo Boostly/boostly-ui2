@@ -14,9 +14,10 @@ const stories = [
   'Modal',
   'Checkbox',
   'Close',
-  'Icons'
+  'Icons',
+  'Input'
 ]
-function loadStories () {
+function loadStories() {
   stories.forEach(story => require('../ui/components/' + story + '/story.js'))
 }
 
