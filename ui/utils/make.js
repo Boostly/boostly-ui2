@@ -12,18 +12,18 @@ const makePropFilter = blacklist => prop => {
   return isPropValid(prop) && !blacklist[prop]
 }
 
-function make ({
+function make({
   api = [],
   css = '',
   extend,
   baseTag = 'div',
   defaults = {},
-  blacklist = []
+  blacklist = [],
 }) {
   const blacklistMap = [..._blacklist, ...blacklist].reduce(
     (map, key) => ({
       ...map,
-      [key]: true
+      [key]: true,
     }),
     {}
   )
@@ -31,24 +31,24 @@ function make ({
   const shouldForwardProp = extend ? () => true : makePropFilter(blacklistMap)
 
   const _Base = styled(extend || 'div', {
-    shouldForwardProp
+    shouldForwardProp,
   })`
     ${css}
     ${api.map(a => sys[a] || a)}
   `
 
-  const Base = props => {
+  const Base = React.forwardRef((props, ref) => {
     const tag = props.as || props.is || baseTag
     return extend ? (
-      <_Base {...defaults} {...props} />
+      <_Base ref={ref} {...defaults} {...props} />
     ) : (
-      <_Base as={tag} {...defaults} {...props} />
+      <_Base ref={ref} as={tag} {...defaults} {...props} />
     )
-  }
+  })
 
   Base.propTypes = {
     as: pt.string,
-    is: pt.string
+    is: pt.string,
   }
 
   return Base
