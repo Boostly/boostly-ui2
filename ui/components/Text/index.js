@@ -9,7 +9,7 @@ const size = p => {
   let fontSize = scale[p.size]
   fontSize = fontSize || px(p.size)
   return {
-    fontSize
+    fontSize,
   }
 }
 
@@ -21,12 +21,12 @@ const Base = make({
     ...api,
     size,
     p => ({ fontWeight: p.weight }),
-    p => ({ fontFamily: p.family })
+    p => ({ fontFamily: p.family }),
   ],
   defaults: {
-    m: 0
+    m: 0,
   },
-  blacklist
+  blacklist,
 })
 
 const sizeToH = ['h6', 'h6', 'h6', 'h6', 'h5', 'h4', 'h3', 'h2', 'h1']
@@ -34,8 +34,8 @@ let Text = make({
   extend: Base,
   defaults: {
     is: 'span',
-    family: fonts.text
-  }
+    family: fonts.text,
+  },
 })
 Text.displayName = 'Title'
 
@@ -43,12 +43,12 @@ Text.title = make({
   extend: Base,
   api: [
     p => ({
-      is: num(p.size) ? sizeToH[p.size] : 'span'
-    })
+      is: num(p.size) ? sizeToH[p.size] : 'span',
+    }),
   ],
   defaults: {
-    family: fonts.h
-  }
+    family: fonts.h,
+  },
 })
 Text.title.displayName = 'Title'
 export const Title = Text.title
@@ -57,8 +57,8 @@ Text.p = make({
   extend: Base,
   defaults: {
     is: 'p',
-    family: fonts.text
-  }
+    family: fonts.text,
+  },
 })
 Text.title.displayName = 'P'
 export const P = Text.p

@@ -2,6 +2,8 @@ export * from './Icons'
 export const Box = require('./Layout').default
 export * from './Layout'
 export * from './Input'
+export * from './Text'
+export * from './Toggle'
 export const Text = require('./Text').default
 export const Title = require('./Text').default.title
 export const Button = require('./Button').default
