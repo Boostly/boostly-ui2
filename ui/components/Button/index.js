@@ -38,14 +38,14 @@ const addDepth = hex => {
       left: 0,
       width: '100%',
       height: '100%',
-      borderRadius: pxToEm(25)
+      borderRadius: pxToEm(25),
     },
     ':hover': {
       boxShadow: `0 3px 4px ${shadow}, 0 0 40px ${inset} inset`,
       transform: 'translateY(-1px)',
-      ':before': { boxShadow: `0 15px 10px -10px ${shadow}` }
+      ':before': { boxShadow: `0 15px 10px -10px ${shadow}` },
     },
-    ':focus': { boxShadow: `0 0px 4px ${shadow}, 0 0 40px ${inset} inset` }
+    ':focus': { boxShadow: `0 0px 4px ${shadow}, 0 0 40px ${inset} inset` },
   }
 }
 
@@ -55,9 +55,13 @@ const variants = {
   second: {
     backgroundColor: 'white',
     color: opacity(colors.dusk, 0.84),
-    ...addDepth(colors.dusk)
+    ...addDepth(colors.dusk),
   },
-  warn: { backgroundColor: colors.red, ...addDepth(colors.red) }
+  clean: {
+    backgroundColor: colors.midnight,
+    ...addDepth(colors.lilac),
+  },
+  warn: { backgroundColor: colors.red, ...addDepth(colors.red) },
 }
 
 export const applyVariants = props => ({ ...variants[props.variant] })
@@ -69,37 +73,37 @@ let _Button = make({
     ${base}
     ${main}
   `,
-  blacklist: ['variant']
+  blacklist: ['variant'],
 })
 
 let Button = make({
   extend: _Button,
   defaults: {
-    variant: 'primary'
-  }
+    variant: 'primary',
+  },
 })
 
 Button.two = make({
   extend: _Button,
   defaults: {
-    variant: 'primary2'
-  }
+    variant: 'primary2',
+  },
 })
 Button.two.displayName = 'ButtonTwo'
 
 Button.second = make({
   extend: _Button,
   defaults: {
-    variant: 'second'
-  }
+    variant: 'second',
+  },
 })
 Button.second.displayName = 'ButtonSecond'
 
 Button.warn = make({
   extend: _Button,
   defaults: {
-    variant: 'warn'
-  }
+    variant: 'warn',
+  },
 })
 Button.warn.displayName = 'ButtonWarn'
 
